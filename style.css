@@ -9,7 +9,36 @@
 body {
   background: lightskyblue;
 }
-    
+
+.start {
+  margin: 30px auto;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.start h1 {
+  line-height: 60px;
+  font-family: "Lato", sans-serif;
+}
+
+.create-board {
+  width: 240px;
+  height: 60px;
+  border-radius: 15px;
+  border: none;
+  font-size: 24px;
+  font-family: "Roboto", sans-serif;
+  background: #1C2E37;
+  color: #fff;
+  transition: .2s ease;
+}
+
+.create-board:hover {
+  background: #eee;
+  color: black;
+}
+
 .board h1 {
   font-size: 24px;
 }

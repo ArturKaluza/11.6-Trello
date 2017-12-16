@@ -85,14 +85,14 @@ $(function() {
     }
   }
 
-  var board = {
-      name: 'Kanban Board',
-      addColumn: function(column) {
-        this.$element.append(column.$element);
-        initSortable();
-      },
-      $element: $('.board .column-container')   // zamiast . # board
-  };
+  // var board = {
+  //     name: 'Kanban Board',
+  //     addColumn: function(column) {
+  //       this.$element.append(column.$element);
+  //       initSortable();
+  //     },
+  //     $element: $('.board .column-container')   // zamiast . # board
+  // };
 
   function initSortable() {
     $('.column-card-list').sortable({
@@ -156,20 +156,17 @@ $(function() {
     this.id = randomString();
     this.name = name;
     this.$element = createBoard();
-    //this.$elem = $('#root');    // $('#root)
-    console.log(this.$elem);
     this.addColumn = function(column) {
-      console.log(self.$element.children('div'));
       self.$element.children('div').append(column.$element);
+    initSortable();
      
     }
     
-    
-
     function createBoard() {
       // CREATING COMPONENTS OF BOARD
       var $board = $('<div>').addClass('board');
       var $boardTitle = $('<h1>').addClass('board-title').text(self.name);
+      var $boardDelete = $('<button>').addClass('btn-delete').text('X');
       var $boardBtn = $('<button>').addClass('create-column').text('Add a column');
       var $BoardContainer = $('<div>').addClass('column-container');
      
@@ -180,24 +177,17 @@ $(function() {
         self.addColumn(column);
       }) 
 
-     
+      $boardDelete.click(function() {
+        self.$element.remove();
+      });
 
-
+    // CONSTRUCT BOARD ELEMENT
       $board.append($boardTitle);
       $board.append($boardBtn);
+      $board.append($boardDelete);
       $board.append($BoardContainer);
       
       return $board;
     }   
-
-   // $elem = $board.children('div')
-   
-
   }
-   
-    
-
-   
-
-
 })
