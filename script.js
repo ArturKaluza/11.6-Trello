@@ -12,22 +12,31 @@ $(function() {
       var $column = $('<div>').addClass('column');
       var $columnTitle = $('<h2>').addClass('column-title').text(self.name);
       var $columnCardList = $('<ul>').addClass('column-card-list');
-      var $columnDelete = $('<button>').addClass('btn-delete').text('x');
+      var $columnDelete = $('<button>').addClass('btn-delete').text('X');
       var $columnAddCard = $('<button>').addClass('add-card').text('Add a card');
-  
+      let $columnInput = $('<input type="text">');
+
       // ADDING EVENTS
       $columnDelete.click(function() {
           self.removeColumn();
       });
+      
       $columnAddCard.click(function(event) {
-          self.addCard(new Card(prompt("Enter the name of the card")));
+          if ($columnInput.val() == '') {
+            return;
+          } else {
+            self.addCard(new Card($columnInput.val()));
+            $columnInput.val('');
+          }
+
       });
   
       // CONSTRUCTION COLUMN ELEMENT
       $column.append($columnTitle)
           .append($columnDelete)
-          .append($columnAddCard)
-          .append($columnCardList);
+          .append($columnCardList)
+          .append($columnInput)
+          .append($columnAddCard);
   
       // RETURN OF CREATED COLUMN
       return $column;
@@ -43,7 +52,7 @@ $(function() {
       this.$element.remove();
     }
   };
-
+  
   function Card(description) {
     var self = this;
   
@@ -55,7 +64,7 @@ $(function() {
           // CREATING THE BLOCKS
           var $card = $('<li>').addClass('card');
           var $cardDescription = $('<p>').addClass('card-description').text(self.description);
-          var $cardDelete = $('<button>').addClass('btn-delete').text('x');
+          var $cardDelete = $('<button>').addClass('btn-delete').text('X');
 
           // BINDING TO CLICK EVENT
           $cardDelete.click(function(){
@@ -63,9 +72,7 @@ $(function() {
           });
 
           // COMBINING BLOCKS AND RETURNING THE CARD
-          $card.append($cardDelete)
-              .append($cardDescription);
-
+          $card.append($cardDescription).append($cardDelete);
             return $card;
         }
       }
@@ -84,7 +91,7 @@ $(function() {
         this.$element.append(column.$element);
         initSortable();
       },
-      $element: $('#board .column-container')
+      $element: $('.board .column-container')   // zamiast . # board
   };
 
   function initSortable() {
@@ -100,23 +107,23 @@ $(function() {
         board.addColumn(column);
   });
 
-    // CREATING COLUMNS
-  var todoColumn = new Column('To do');
-  var doingColumn = new Column('Doing');
-  var doneColumn = new Column('Done');
+  //   // CREATING COLUMNS
+  // var todoColumn = new Column('To do');
+  // var doingColumn = new Column('Doing');
+  // var doneColumn = new Column('Done');
 
-  // ADDING COLUMNS TO THE BOARD
-  board.addColumn(todoColumn);
-  board.addColumn(doingColumn);
-  board.addColumn(doneColumn);
+  // // ADDING COLUMNS TO THE BOARD
+  // board.addColumn(todoColumn);
+  // board.addColumn(doingColumn);
+  // board.addColumn(doneColumn);
 
-  // CREATING CARDS
-  var card1 = new Card('New task');
-  var card2 = new Card('Create kanban boards');
+  // // CREATING CARDS
+  // var card1 = new Card('New task');
+  // var card2 = new Card('Create kanban boards');
 
-  // ADDING CARDS TO COLUMNS
-  todoColumn.addCard(card1);
-  doingColumn.addCard(card2);
+  // // ADDING CARDS TO COLUMNS
+  // todoColumn.addCard(card1);
+  // doingColumn.addCard(card2);
 
   function randomString() {
       var chars = '0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ';
@@ -126,5 +133,71 @@ $(function() {
       }
       return str;
   }
+
+  var root = {
+    name: 'root',
+    addBoard: function(board) {
+      this.$element.append(board.$element);
+      initSortable();
+    },
+    $element: $('#root'),
+};
+
+  $('#create-board').click(function(){
+    var name = prompt('Enter a board name');
+    var board = new Board(name);
+    root.addBoard(board);
+  });
+
+
+  function Board(name) {
+    var self = this;
+
+    this.id = randomString();
+    this.name = name;
+    this.$element = createBoard();
+    //this.$elem = $('#root');    // $('#root)
+    console.log(this.$elem);
+    this.addColumn = function(column) {
+      console.log(self.$element.children('div'));
+      self.$element.children('div').append(column.$element);
+     
+    }
+    
+    
+
+    function createBoard() {
+      // CREATING COMPONENTS OF BOARD
+      var $board = $('<div>').addClass('board');
+      var $boardTitle = $('<h1>').addClass('board-title').text(self.name);
+      var $boardBtn = $('<button>').addClass('create-column').text('Add a column');
+      var $BoardContainer = $('<div>').addClass('column-container');
+     
+     // ADDING EVENTS
+      $boardBtn.click(function(event){
+        name = prompt();
+        column = new Column(name);
+        self.addColumn(column);
+      }) 
+
+     
+
+
+      $board.append($boardTitle);
+      $board.append($boardBtn);
+      $board.append($BoardContainer);
+      
+      return $board;
+    }   
+
+   // $elem = $board.children('div')
+   
+
+  }
+   
+    
+
+   
+
 
 })

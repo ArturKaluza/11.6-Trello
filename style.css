@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Roboto:400,700&subset=latin-ext');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: lightskyblue;
+}
+    
+.board h1 {
+  font-size: 24px;
+}
+
+.board .create-column {
+  width: 160px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  border-radius: 12px;
+  border: 1px solid black;
+  margin-left: 15px;
+  transition: 0.3s ease-in;
+}
+
+.board .create-column:hover {
+  background: #1C2E37; 
+  color: #fff;
+}
+
+
+.column-container {
+  display: flex;
+}
+
+.column {
+  width: 400px;
+  margin: 20px 15px;
+  background: #f4f4f4;
+  font-size: 24px;
+  border: 3px solid black;
+  border-radius: 10px;
+}
+
+.column-title {
+  text-align: center;
+  padding: 10px 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.column-card-list {
+  list-style-type: none;
+}
+
+.column-card-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  margin: 15px 10px;
+  font-family: 'Lato', sans-serif;
+  box-shadow: 0px 0px 10px 5px #CCC;
+}
+
+.column input {
+  width: 200px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 20px;
+  font-family: "Lato", sans-serif;
+  margin: 10px 0 10px 10px;
+  border: 1px solid black;
+  border-right: none;
+}
+
+.column .add-card {
+  height: 30px;
+  width: 120px;
+  background: lightskyblue;
+  border: 1px solid black;
+  font-size: 16px;
+  position: relative;
+  top: -3px;
+  transition: .3s ease;
+}
+
+.column .add-card:hover {
+  background: #1C2E37;
+  color: #fff;
+}
+
+.btn-delete {
+  width: 20px;
+  height: 20px;
+  background: red;
+  border: none;
+  border-radius: 4px;
+  transition: .3s ease-out;
+}
+
+.btn-delete:hover {
+  background: rgb(190, 0, 0);
+  color: #fff;
+}
