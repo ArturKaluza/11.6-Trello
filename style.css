@@ -10,6 +10,7 @@ body {
   background: lightskyblue;
 }
 
+/* begin html */
 .start {
   margin: 30px auto;
   max-width: 800px;
@@ -20,6 +21,11 @@ body {
 .start h1 {
   line-height: 60px;
   font-family: "Lato", sans-serif;
+}
+
+.root {
+  max-width: 1800px;
+  margin: 0 auto;
 }
 
 .create-board {
@@ -39,8 +45,21 @@ body {
   color: black;
 }
 
+/* board */
+.board {
+  min-height: 200px;
+}
+
 .board h1 {
-  font-size: 24px;
+  margin: 20px auto;
+  width: 200px;
+  background: #eee;
+  padding: 10px 0;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
 }
 
 .board .create-column {
@@ -61,9 +80,29 @@ body {
   color: #fff;
 }
 
+.btn-board {
+  width: 160px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  background: red;
+  border-radius: 12px;
+  border: 1px solid black;
+  margin-left: 20px;
+  transition: .3s ease;
+}
 
+.btn-board:hover {
+  background: rgb(190, 0, 0);
+  color: #fff;
+}
+
+/* column */
 .column-container {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .column {
@@ -83,6 +122,10 @@ body {
 
 .column-card-list {
   list-style-type: none;
+}
+
+.column ul {
+  min-height: 30px;
 }
 
 .column-card-list li {
@@ -122,12 +165,34 @@ body {
   color: #fff;
 }
 
+.btn-column {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  top: -1px;
+  margin-left: 5px;
+  background: red;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 20px;
+  transition: .3s ease-out;
+}
+
+.btn-column:hover {
+  background: rgb(190, 0, 0);
+  color: #fff;
+}
+
+/* Card button */
 .btn-delete {
   width: 20px;
   height: 20px;
   background: red;
   border: none;
   border-radius: 4px;
+  text-align: center;
   transition: .3s ease-out;
 }
 
